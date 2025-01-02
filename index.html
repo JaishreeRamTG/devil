@@ -132,9 +132,9 @@
   <button class="audio-button" id="audio-button" onclick="toggleAudio()">Enable Audio</button>
 
   <!-- Secondary Buttons -->
-  <button class="secondary-button" id="chatgpt-button">ChatGPT</button>
-  <button class="secondary-button" id="gemini-button">Gemini</button>
-  <button class="secondary-button" id="vg-button">Virtual Girlfriend</button>
+  <button class="secondary-button" id="chatgpt-button" onclick="alert('ChatGPT is coming soon!')">ChatGPT</button>
+  <button class="secondary-button" id="gemini-button" onclick="openGemini()">Gemini</button>
+  <button class="secondary-button" id="vg-button" onclick="alert('Virtual Girlfriend is coming soon!')">Virtual Girlfriend</button>
   <button class="back-button" id="back-button" onclick="goBack()">🔙 Back</button>
 
   <script>
@@ -171,6 +171,11 @@
 
       document.getElementById('back-button').style.display = 'none';
       document.querySelector('.heading').textContent = "MysticxAI";
+    }
+
+    function openGemini() {
+      // Redirect to the Gemini Chatbot page
+      window.location.href = "gemini.html"; // Replace with the correct path to your Gemini HTML file
     }
   </script>
 </body>
