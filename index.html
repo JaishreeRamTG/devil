@@ -46,17 +46,19 @@
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.5); /* Transparent black background */
-      border: none; /* Removed border */
+      border: none; /* No border */
       border-radius: 5px;
-      padding: 15px 30px; /* Adjusted padding for better size */
+      padding: 15px 30px; /* Fixed padding */
       cursor: pointer;
-      font-size: 2vw; /* Responsive font size */
+      font-size: 18px; /* Fixed font size */
       font-variant: small-caps;
       font-weight: bold;
       text-transform: lowercase;
       color: white;
       z-index: 1000;
       animation: neon 3s infinite alternate;
+      width: 200px; /* Fixed width */
+      text-align: center; /* Center-align text */
     }
     .audio-button:hover {
       background: rgba(0, 0, 0, 0.7); /* Slightly darker on hover */
@@ -73,19 +75,6 @@
       100% {
         color: #6200ea;
         text-shadow: 0 0 5px #6200ea, 0 0 10px #6200ea, 0 0 20px #6200ea;
-      }
-    }
-    /* Media query for smaller screens */
-    @media (max-width: 600px) {
-      .audio-button {
-        font-size: 4vw;
-        padding: 10px 20px;
-      }
-    }
-    @media (min-width: 1200px) {
-      .audio-button {
-        font-size: 1.5vw;
-        padding: 20px 40px;
       }
     }
   </style>
