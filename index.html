@@ -23,6 +23,24 @@
       font-size: 24px;
       font-weight: bold;
     }
+    .nav-buttons {
+      margin: 10px 0;
+      display: flex;
+      gap: 10px;
+    }
+    .nav-buttons .nav-button {
+      padding: 10px 20px;
+      background-color: #03dac6;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+    }
+    .nav-buttons .nav-button:hover {
+      background-color: #018786;
+    }
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -33,7 +51,8 @@
     }
     .button {
       padding: 10px;
-      background: url('https://envs.sh/rSk.jpg') no-repeat center center / cover;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://envs.sh/rSR.jpg') no-repeat center center / cover;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -43,7 +62,7 @@
       height: 50px;
     }
     .button:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
     .next-button {
       width: 150px;
@@ -64,6 +83,11 @@
 </head>
 <body>
   <header>MysticxAI</header>
+  <div class="nav-buttons">
+    <button class="nav-button">Home</button>
+    <button class="nav-button">About</button>
+    <button class="nav-button">Contact</button>
+  </div>
   <div class="container">
     <!-- Generate 50 buttons -->
     <script>
