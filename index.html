@@ -1,1 +1,77 @@
-https://envs.sh/rSU.jpg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MysticxAI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    header {
+      width: 100%;
+      background-color: #6200ea;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      width: 90%;
+      max-width: 800px;
+      margin: 20px 0;
+    }
+    .button {
+      padding: 10px;
+      background: url('https://envs.sh/rSU.jpg') no-repeat center center / cover;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      height: 50px;
+    }
+    .button:hover {
+      opacity: 0.8;
+    }
+    .next-button {
+      width: 150px;
+      padding: 10px;
+      background-color: #03dac6;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .next-button:hover {
+      background-color: #018786;
+    }
+  </style>
+</head>
+<body>
+  <header>MysticxAI</header>
+  <div class="container">
+    <!-- Generate 50 buttons -->
+    <script>
+      for (let i = 1; i <= 50; i++) {
+        document.write(`<button class="button">Button ${i}</button>`);
+      }
+    </script>
+  </div>
+  <button class="next-button">Next</button>
+</body>
+</html>
