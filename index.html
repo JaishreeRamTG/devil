@@ -45,8 +45,8 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: transparent;
-      border: 2px solid #03dac6;
+      background: rgba(0, 0, 0, 0.5); /* Transparent black background */
+      border: none; /* Removed border */
       border-radius: 5px;
       padding: 10px 20px;
       cursor: pointer;
@@ -59,8 +59,7 @@
       animation: neon 3s infinite alternate;
     }
     .audio-button:hover {
-      background: transparent;
-      border-color: #ff0266;
+      background: rgba(0, 0, 0, 0.7); /* Slightly darker on hover */
     }
     @keyframes neon {
       0% {
