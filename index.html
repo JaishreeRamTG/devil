@@ -3,210 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MysticxAI</title>
+  <title>Gemini Chat</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      position: relative;
       height: 100vh;
-      width: 100vw;
+      background-color: #f4f4f9;
     }
-    video {
-      position: fixed;
-      top: 0;
-      left: 0;
+    h1 {
+      color: #333;
+    }
+    textarea {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      pointer-events: none;
+      max-width: 600px;
+      height: 100px;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
     }
-    .heading {
-      position: fixed;
-      top: 3%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 8vw;
-      font-variant: small-caps;
-      font-weight: bold;
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #6200ea;
       color: white;
-      text-transform: lowercase;
-      z-index: 1000;
-      animation: neon 3s infinite alternate;
-      text-align: center;
-      width: 90%;
-    }
-    .chatbot-button, .audio-button, .secondary-button, .back-button {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      max-width: 300px;
-      height: 50px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      font-variant: small-caps;
-      font-weight: bold;
-      text-transform: lowercase;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .chatbot-button {
-      background: rgba(255, 255, 255, 0.5);
-      color: black;
-      top: 50%;
-      transform: translate(-50%, -50%);
+    button:hover {
+      background-color: #3700b3;
     }
-    .chatbot-button:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-    .audio-button {
-      bottom: 5%;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      animation: neon 3s infinite alternate;
-    }
-    .audio-button:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-    .secondary-button {
-      background: rgba(255, 255, 255, 0.5);
-      color: black;
-      display: none; /* Hidden initially */
-    }
-    .secondary-button:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-    #chatgpt-button {
-      top: 40%; /* Position ChatGPT button */
-    }
-    #gemini-button {
-      top: 50%; /* Position Gemini button */
-    }
-    #vg-button {
-      top: 60%; /* Position Virtual Girlfriend button */
-    }
-    .back-button {
-      bottom: 5%;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      display: none; /* Hidden initially */
-    }
-    .back-button:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-    .gemini-content {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      color: black;
-      overflow-y: auto;
-      z-index: 1000;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    @keyframes neon {
-      0% {
-        color: #03dac6;
-        text-shadow: 0 0 5px #03dac6, 0 0 10px #03dac6, 0 0 20px #03dac6;
-      }
-      50% {
-        color: #ff0266;
-        text-shadow: 0 0 5px #ff0266, 0 0 10px #ff0266, 0 0 20px #ff0266;
-      }
-      100% {
-        color: #6200ea;
-        text-shadow: 0 0 5px #6200ea, 0 0 10px #6200ea;
-      }
+    .response {
+      margin-top: 20px;
+      max-width: 600px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop id="bg-video">
-    <source src="https://envs.sh/rWD.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <h1 class="heading">MysticxAI</h1>
-  <button class="chatbot-button" onclick="openChatbot()">Chatbot</button>
-  <button class="audio-button" id="audio-button" onclick="toggleAudio()">Enable Audio</button>
-
-  <!-- Secondary Buttons -->
-  <button class="secondary-button" id="chatgpt-button" onclick="alert('ChatGPT is coming soon!')">ChatGPT</button>
-  <button class="secondary-button" id="gemini-button" onclick="openGemini()">Gemini</button>
-  <button class="secondary-button" id="vg-button" onclick="alert('Virtual Girlfriend is coming soon!')">Virtual Girlfriend</button>
-  <button class="back-button" id="back-button" onclick="goBack()">🔙 Back</button>
-
-  <!-- Gemini Content -->
-  <div class="gemini-content" id="gemini-content">
-    <header class="header">
-      <h1 class="title">Hello, there</h1>
-      <p class="subtitle">How can I help you today?</p>
-      <ul class="suggestion-list">
-        <li>Help me plan a game night with my 5 best friends for under $100.</li>
-        <li>What are the best tips to improve my public speaking skills?</li>
-        <li>Can you help me find the latest news on web development?</li>
-        <li>Write JavaScript code to sum all elements in an array.</li>
-      </ul>
-    </header>
-  </div>
+  <h1>Gemini Chat</h1>
+  <textarea id="prompt" placeholder="Enter your prompt here..."></textarea>
+  <button onclick="sendRequest()">Send</button>
+  <div class="response" id="response"></div>
 
   <script>
-    function toggleAudio() {
-      const video = document.getElementById('bg-video');
-      const button = document.getElementById('audio-button');
+    function sendRequest() {
+      const prompt = document.getElementById('prompt').value;
+      const responseDiv = document.getElementById('response');
 
-      video.muted = !video.muted;
+      if (!prompt) {
+        responseDiv.textContent = "Please enter a prompt.";
+        return;
+      }
 
-      button.textContent = video.muted ? "Enable Audio" : "Stop Audio";
-    }
-
-    function openChatbot() {
-      document.getElementById('bg-video').style.display = 'none';
-      document.querySelector('.chatbot-button').style.display = 'none';
-      document.querySelector('.audio-button').style.display = 'none';
-
-      document.querySelectorAll('.secondary-button').forEach(btn => {
-        btn.style.display = 'flex';
-      });
-
-      document.getElementById('back-button').style.display = 'flex';
-      document.querySelector('.heading').textContent = "MysticxAI";
-    }
-
-    function goBack() {
-      document.getElementById('bg-video').style.display = 'block';
-      document.querySelector('.chatbot-button').style.display = 'flex';
-      document.querySelector('.audio-button').style.display = 'flex';
-
-      document.querySelectorAll('.secondary-button').forEach(btn => {
-        btn.style.display = 'none';
-      });
-
-      document.getElementById('back-button').style.display = 'none';
-      document.querySelector('.heading').textContent = "MysticxAI";
-      document.getElementById('gemini-content').style.display = 'none';
-    }
-
-    function openGemini() {
-      document.querySelectorAll('.secondary-button, .back-button').forEach(btn => {
-        btn.style.display = 'none';
-      });
-      document.getElementById('gemini-content').style.display = 'block';
+      fetch('path-to-your-php-file.php?prompt=' + encodeURIComponent(prompt))
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            responseDiv.textContent = "Error: " + data.error;
+          } else {
+            responseDiv.innerHTML = `
+              <strong>Status:</strong> ${data.status}<br>
+              <strong>Response:</strong> ${data.response}
+            `;
+          }
+        })
+        .catch(error => {
+          responseDiv.textContent = "An error occurred: " + error.message;
+        });
     }
   </script>
 </body>
