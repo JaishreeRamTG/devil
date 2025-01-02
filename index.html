@@ -30,10 +30,10 @@
     }
     .heading {
       position: fixed;
-      top: 5%; /* Move heading higher */
+      top: 3%;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 8vw; /* Adjust font size relative to the viewport width */
+      font-size: 8vw;
       font-variant: small-caps;
       font-weight: bold;
       color: white;
@@ -41,19 +41,19 @@
       z-index: 1000;
       animation: neon 3s infinite alternate;
       text-align: center;
-      width: 90%; /* Ensures proper spacing on smaller screens */
+      width: 90%;
     }
-    .chatbot-button, .audio-button {
+    .chatbot-button, .audio-button, .option-button {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      width: 60%; /* Adjust width for mobile-friendly design */
+      width: 60%;
       max-width: 300px;
       height: 50px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px; /* Fixed font size for consistent appearance */
+      font-size: 16px;
       font-variant: small-caps;
       font-weight: bold;
       text-transform: lowercase;
@@ -63,22 +63,39 @@
       justify-content: center;
     }
     .chatbot-button {
-      background: rgba(255, 255, 255, 0.5); /* White-transparent background */
-      color: black; /* Text color for contrast */
-      top: 50%; /* Place the Chatbot button in the middle */
+      background: rgba(255, 255, 255, 0.5);
+      color: black;
+      top: 50%;
       transform: translate(-50%, -50%);
     }
     .chatbot-button:hover {
-      background: rgba(255, 255, 255, 0.7); /* Slightly darker on hover */
+      background: rgba(255, 255, 255, 0.7);
     }
     .audio-button {
-      bottom: 5%; /* Keep the Audio button at the bottom */
+      bottom: 5%;
       background: rgba(0, 0, 0, 0.5);
       color: white;
       animation: neon 3s infinite alternate;
     }
     .audio-button:hover {
       background: rgba(0, 0, 0, 0.7);
+    }
+    .option-buttons {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 1000;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .option-button {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+    }
+    .option-button:hover {
+      background: rgba(255, 255, 255, 1);
     }
     @keyframes neon {
       0% {
@@ -102,18 +119,22 @@
     Your browser does not support the video tag.
   </video>
   <h1 class="heading">MysticxAI</h1>
-  <button class="chatbot-button" onclick="openChatbot()">Chatbot</button>
+  <button class="chatbot-button" id="chatbot-button" onclick="showOptions()">Chatbot</button>
   <button class="audio-button" id="audio-button" onclick="toggleAudio()">Enable Audio</button>
+
+  <div class="option-buttons" id="option-buttons">
+    <button class="option-button" onclick="selectOption('ChatGPT')">ChatGPT</button>
+    <button class="option-button" onclick="selectOption('Gemini')">Gemini</button>
+    <button class="option-button" onclick="selectOption('Virtual Girlfriend')">Virtual Girlfriend</button>
+  </div>
 
   <script>
     function toggleAudio() {
       const video = document.getElementById('bg-video');
       const button = document.getElementById('audio-button');
 
-      // Toggle audio mute state
       video.muted = !video.muted;
 
-      // Update button text based on the audio state
       if (video.muted) {
         button.textContent = "Enable Audio";
       } else {
@@ -121,8 +142,19 @@
       }
     }
 
-    function openChatbot() {
-      alert("Chatbot feature coming soon!"); // Replace this with actual chatbot functionality
+    function showOptions() {
+      // Hide unnecessary elements
+      document.getElementById('bg-video').style.display = 'none';
+      document.querySelector('.heading').style.display = 'none';
+      document.getElementById('chatbot-button').style.display = 'none';
+      document.getElementById('audio-button').style.display = 'none';
+
+      // Show option buttons
+      document.getElementById('option-buttons').style.display = 'flex';
+    }
+
+    function selectOption(option) {
+      alert(`${option} selected!`); // Placeholder action for each option
     }
   </script>
 </body>
