@@ -43,7 +43,7 @@
       text-align: center;
       width: 90%;
     }
-    .chatbot-button, .audio-button, .option-button {
+    .chatbot-button, .audio-button, .secondary-button, .back-button {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
@@ -80,22 +80,25 @@
     .audio-button:hover {
       background: rgba(0, 0, 0, 0.7);
     }
-    .option-buttons {
-      display: none;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 1000;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .option-button {
-      background: rgba(255, 255, 255, 0.8);
+    .secondary-button {
+      background: rgba(255, 255, 255, 0.5);
       color: black;
+      top: 30%; /* Adjust button positioning */
+      transform: translate(-50%, -50%);
+      margin-top: 60px; /* Space between buttons */
+      display: none; /* Hidden initially */
     }
-    .option-button:hover {
-      background: rgba(255, 255, 255, 1);
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .back-button {
+      bottom: 5%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: none; /* Hidden initially */
+    }
+    .back-button:hover {
+      background: rgba(0, 0, 0, 0.7);
     }
     @keyframes neon {
       0% {
@@ -119,14 +122,14 @@
     Your browser does not support the video tag.
   </video>
   <h1 class="heading">MysticxAI</h1>
-  <button class="chatbot-button" id="chatbot-button" onclick="showOptions()">Chatbot</button>
+  <button class="chatbot-button" onclick="openChatbot()">Chatbot</button>
   <button class="audio-button" id="audio-button" onclick="toggleAudio()">Enable Audio</button>
 
-  <div class="option-buttons" id="option-buttons">
-    <button class="option-button" onclick="selectOption('ChatGPT')">ChatGPT</button>
-    <button class="option-button" onclick="selectOption('Gemini')">Gemini</button>
-    <button class="option-button" onclick="selectOption('Virtual Girlfriend')">Virtual Girlfriend</button>
-  </div>
+  <!-- Secondary Buttons -->
+  <button class="secondary-button" id="chatgpt-button">ChatGPT</button>
+  <button class="secondary-button" id="gemini-button">Gemini</button>
+  <button class="secondary-button" id="vg-button">Virtual Girlfriend</button>
+  <button class="back-button" id="back-button" onclick="goBack()">🔙 Back</button>
 
   <script>
     function toggleAudio() {
@@ -135,26 +138,33 @@
 
       video.muted = !video.muted;
 
-      if (video.muted) {
-        button.textContent = "Enable Audio";
-      } else {
-        button.textContent = "Stop Audio";
-      }
+      button.textContent = video.muted ? "Enable Audio" : "Stop Audio";
     }
 
-    function showOptions() {
-      // Hide unnecessary elements
+    function openChatbot() {
       document.getElementById('bg-video').style.display = 'none';
-      document.querySelector('.heading').style.display = 'none';
-      document.getElementById('chatbot-button').style.display = 'none';
-      document.getElementById('audio-button').style.display = 'none';
+      document.querySelector('.chatbot-button').style.display = 'none';
+      document.querySelector('.audio-button').style.display = 'none';
 
-      // Show option buttons
-      document.getElementById('option-buttons').style.display = 'flex';
+      document.querySelectorAll('.secondary-button').forEach(btn => {
+        btn.style.display = 'flex';
+      });
+
+      document.getElementById('back-button').style.display = 'flex';
+      document.querySelector('.heading').textContent = "MysticxAI";
     }
 
-    function selectOption(option) {
-      alert(`${option} selected!`); // Placeholder action for each option
+    function goBack() {
+      document.getElementById('bg-video').style.display = 'block';
+      document.querySelector('.chatbot-button').style.display = 'flex';
+      document.querySelector('.audio-button').style.display = 'flex';
+
+      document.querySelectorAll('.secondary-button').forEach(btn => {
+        btn.style.display = 'none';
+      });
+
+      document.getElementById('back-button').style.display = 'none';
+      document.querySelector('.heading').textContent = "MysticxAI";
     }
   </script>
 </body>
