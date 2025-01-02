@@ -3,86 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gemini Chat</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #f4f4f9;
-    }
-    h1 {
-      color: #333;
-    }
-    textarea {
-      width: 100%;
-      max-width: 600px;
-      height: 100px;
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #6200ea;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #3700b3;
-    }
-    .response {
-      margin-top: 20px;
-      max-width: 600px;
-      background: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+  <title>GeminiGPT API</title>
 </head>
 <body>
-  <h1>Gemini Chat</h1>
-  <textarea id="prompt" placeholder="Enter your prompt here..."></textarea>
-  <button onclick="sendRequest()">Send</button>
-  <div class="response" id="response"></div>
+  <h1>GeminiGPT API</h1>
+  <form id="apiForm">
+    <label for="prompt">Enter Prompt:</label>
+    <input type="text" id="prompt" name="prompt" required>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="response"></div>
 
   <script>
-    function sendRequest() {
+    document.getElementById('apiForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
       const prompt = document.getElementById('prompt').value;
       const responseDiv = document.getElementById('response');
 
       if (!prompt) {
-        responseDiv.textContent = "Please enter a prompt.";
+        responseDiv.textContent = 'Prompt parameter is required';
         return;
       }
 
-      fetch('gemini.php?prompt=' + encodeURIComponent(prompt))
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            responseDiv.textContent = "Error: " + data.error;
-          } else {
-            responseDiv.innerHTML = `
-              <strong>Status:</strong> ${data.status}<br>
-              <strong>Response:</strong> ${data.response}
-            `;
-          }
-        })
-        .catch(error => {
-          responseDiv.textContent = "An error occurred: " + error.message;
+      const url = `https://geminigptai.com/api?prompt=${encodeURIComponent(prompt)}`;
+      const payload = JSON.stringify([{ content: prompt, role: 'user' }]);
+      
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'content-length': payload.length.toString(),
+            'sec-ch-ua': '"Android WebView";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+            'sec-ch-ua-platform': 'Android',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+            'content-type': 'text/plain;charset=UTF-8',
+            'accept': '*/*',
+            'origin': 'https://geminigptai.com',
+            'x-requested-with': 'mark.via.gp',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://geminigptai.com/chat',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',
+            'priority': 'u=1, i'
+          },
+          body: payload,
         });
-    }
+
+        const result = await response.json();
+
+        if (result.result && result.result.content) {
+          responseDiv.textContent = result.result.content;
+        } else {
+          responseDiv.textContent = 'Failed to extract content';
+        }
+      } catch (error) {
+        responseDiv.textContent = `Error: ${error.message}`;
+      }
+    });
   </script>
 </body>
 </html>
