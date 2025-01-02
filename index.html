@@ -89,13 +89,30 @@
     .next-button:hover {
       background-color: #018786;
     }
+    .audio-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #03dac6;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1000;
+    }
+    .audio-button:hover {
+      background-color: #018786;
+    }
   </style>
 </head>
 <body>
-  <video autoplay loop>
+  <video autoplay muted loop id="bg-video">
     <source src="https://envs.sh/rWD.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+  <button class="audio-button" onclick="toggleAudio()">Enable Audio</button>
   <header>MysticxAI</header>
   <div class="nav-buttons">
     <button class="nav-button">Home</button>
@@ -111,5 +128,13 @@
     </script>
   </div>
   <button class="next-button">Next</button>
+
+  <script>
+    function toggleAudio() {
+      const video = document.getElementById('bg-video');
+      video.muted = !video.muted;
+      alert(video.muted ? "Audio Muted" : "Audio Enabled");
+    }
+  </script>
 </body>
 </html>
