@@ -27,19 +27,38 @@
     }
     .audio-button {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #03dac6;
-      color: black;
-      border: none;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 2px solid #03dac6;
       border-radius: 5px;
       padding: 10px 20px;
       cursor: pointer;
       font-size: 16px;
+      font-variant: small-caps;
+      font-weight: bold;
+      text-transform: lowercase;
+      color: white;
       z-index: 1000;
+      animation: neon 3s infinite alternate;
     }
     .audio-button:hover {
-      background-color: #018786;
+      background: rgba(3, 218, 198, 0.2);
+    }
+    @keyframes neon {
+      0% {
+        color: #03dac6;
+        text-shadow: 0 0 5px #03dac6, 0 0 10px #03dac6, 0 0 20px #03dac6;
+      }
+      50% {
+        color: #ff0266;
+        text-shadow: 0 0 5px #ff0266, 0 0 10px #ff0266, 0 0 20px #ff0266;
+      }
+      100% {
+        color: #6200ea;
+        text-shadow: 0 0 5px #6200ea, 0 0 10px #6200ea, 0 0 20px #6200ea;
+      }
     }
   </style>
 </head>
