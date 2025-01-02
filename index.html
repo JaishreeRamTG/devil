@@ -25,70 +25,6 @@
       object-fit: cover;
       z-index: -1;
     }
-    header {
-      width: 100%;
-      background-color: rgba(98, 0, 234, 0.8);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .nav-buttons {
-      margin: 10px 0;
-      display: flex;
-      gap: 10px;
-    }
-    .nav-buttons .nav-button {
-      padding: 10px 20px;
-      background-color: #03dac6;
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      text-align: center;
-    }
-    .nav-buttons .nav-button:hover {
-      background-color: #018786;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 10px;
-      width: 90%;
-      max-width: 800px;
-      margin: 20px 0;
-    }
-    .button {
-      padding: 10px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      color: black;
-      text-align: center;
-      height: 50px;
-    }
-    .button:hover {
-      background-color: #f1f1f1;
-    }
-    .next-button {
-      width: 150px;
-      padding: 10px;
-      background-color: #03dac6;
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 18px;
-      text-align: center;
-      margin: 20px 0;
-    }
-    .next-button:hover {
-      background-color: #018786;
-    }
     .audio-button {
       position: fixed;
       top: 20px;
@@ -113,21 +49,6 @@
     Your browser does not support the video tag.
   </video>
   <button class="audio-button" onclick="toggleAudio()">Enable Audio</button>
-  <header>MysticxAI</header>
-  <div class="nav-buttons">
-    <button class="nav-button">Home</button>
-    <button class="nav-button">About</button>
-    <button class="nav-button">Contact</button>
-  </div>
-  <div class="container">
-    <!-- Generate 50 buttons -->
-    <script>
-      for (let i = 1; i <= 50; i++) {
-        document.write(`<button class="button">Button ${i}</button>`);
-      }
-    </script>
-  </div>
-  <button class="next-button">Next</button>
 
   <script>
     function toggleAudio() {
