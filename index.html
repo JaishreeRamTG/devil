@@ -67,7 +67,7 @@
         return;
       }
 
-      fetch('path-to-your-php-file.php?prompt=' + encodeURIComponent(prompt))
+      fetch('gemini.php?prompt=' + encodeURIComponent(prompt))
         .then(response => response.json())
         .then(data => {
           if (data.error) {
