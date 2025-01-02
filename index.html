@@ -30,7 +30,7 @@
     }
     .heading {
       position: fixed;
-      top: 10%;
+      top: 5%; /* Move heading higher */
       left: 50%;
       transform: translateX(-50%);
       font-size: 8vw; /* Adjust font size relative to the viewport width */
@@ -43,9 +43,8 @@
       text-align: center;
       width: 90%; /* Ensures proper spacing on smaller screens */
     }
-    .audio-button {
+    .chatbot-button, .audio-button {
       position: fixed;
-      bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
       width: 60%; /* Adjust width for mobile-friendly design */
@@ -66,8 +65,15 @@
       align-items: center;
       justify-content: center;
     }
-    .audio-button:hover {
+    .chatbot-button:hover, .audio-button:hover {
       background: rgba(0, 0, 0, 0.7);
+    }
+    .chatbot-button {
+      top: 50%; /* Place the Chatbot button in the middle */
+      transform: translate(-50%, -50%);
+    }
+    .audio-button {
+      bottom: 5%; /* Keep the Audio button at the bottom */
     }
     @keyframes neon {
       0% {
@@ -91,6 +97,7 @@
     Your browser does not support the video tag.
   </video>
   <h1 class="heading">MysticxAI</h1>
+  <button class="chatbot-button" onclick="openChatbot()">Chatbot</button>
   <button class="audio-button" id="audio-button" onclick="toggleAudio()">Enable Audio</button>
 
   <script>
@@ -107,6 +114,10 @@
       } else {
         button.textContent = "Stop Audio";
       }
+    }
+
+    function openChatbot() {
+      alert("Chatbot feature coming soon!"); // Replace this with actual chatbot functionality
     }
   </script>
 </body>
