@@ -50,7 +50,6 @@
       width: 60%; /* Adjust width for mobile-friendly design */
       max-width: 300px;
       height: 50px;
-      background: rgba(0, 0, 0, 0.5);
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -58,22 +57,28 @@
       font-variant: small-caps;
       font-weight: bold;
       text-transform: lowercase;
-      color: white;
       z-index: 1000;
-      animation: neon 3s infinite alternate;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .chatbot-button:hover, .audio-button:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
     .chatbot-button {
+      background: rgba(255, 255, 255, 0.5); /* White-transparent background */
+      color: black; /* Text color for contrast */
       top: 50%; /* Place the Chatbot button in the middle */
       transform: translate(-50%, -50%);
     }
+    .chatbot-button:hover {
+      background: rgba(255, 255, 255, 0.7); /* Slightly darker on hover */
+    }
     .audio-button {
       bottom: 5%; /* Keep the Audio button at the bottom */
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      animation: neon 3s infinite alternate;
+    }
+    .audio-button:hover {
+      background: rgba(0, 0, 0, 0.7);
     }
     @keyframes neon {
       0% {
