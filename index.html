@@ -106,6 +106,20 @@
     .back-button:hover {
       background: rgba(0, 0, 0, 0.7);
     }
+    .gemini-content {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      color: black;
+      overflow-y: auto;
+      z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
     @keyframes neon {
       0% {
         color: #03dac6;
@@ -117,7 +131,7 @@
       }
       100% {
         color: #6200ea;
-        text-shadow: 0 0 5px #6200ea, 0 0 10px #6200ea, 0 0 20px #6200ea;
+        text-shadow: 0 0 5px #6200ea, 0 0 10px #6200ea;
       }
     }
   </style>
@@ -136,6 +150,20 @@
   <button class="secondary-button" id="gemini-button" onclick="openGemini()">Gemini</button>
   <button class="secondary-button" id="vg-button" onclick="alert('Virtual Girlfriend is coming soon!')">Virtual Girlfriend</button>
   <button class="back-button" id="back-button" onclick="goBack()">🔙 Back</button>
+
+  <!-- Gemini Content -->
+  <div class="gemini-content" id="gemini-content">
+    <header class="header">
+      <h1 class="title">Hello, there</h1>
+      <p class="subtitle">How can I help you today?</p>
+      <ul class="suggestion-list">
+        <li>Help me plan a game night with my 5 best friends for under $100.</li>
+        <li>What are the best tips to improve my public speaking skills?</li>
+        <li>Can you help me find the latest news on web development?</li>
+        <li>Write JavaScript code to sum all elements in an array.</li>
+      </ul>
+    </header>
+  </div>
 
   <script>
     function toggleAudio() {
@@ -171,11 +199,14 @@
 
       document.getElementById('back-button').style.display = 'none';
       document.querySelector('.heading').textContent = "MysticxAI";
+      document.getElementById('gemini-content').style.display = 'none';
     }
 
     function openGemini() {
-      // Redirect to the Gemini Chatbot page
-      window.location.href = "gemini.html"; // Replace with the correct path to your Gemini HTML file
+      document.querySelectorAll('.secondary-button, .back-button').forEach(btn => {
+        btn.style.display = 'none';
+      });
+      document.getElementById('gemini-content').style.display = 'block';
     }
   </script>
 </body>
