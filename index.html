@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Neon Heading and Button</title>
+    <title>MysticxAI</title>
     <style>
         * {
             margin: 0;
@@ -55,6 +55,7 @@
         }
 
         .audio-toggle,
+        .chatbot-container,
         .back-toggle {
             position: absolute;
             left: 50%;
@@ -85,14 +86,35 @@
             display: none; /* Initially hidden */
         }
 
-        .chatbot-image {
-            position: absolute;
+        .chatbot-container {
             top: 50%;
-            left: 50%;
             transform: translate(-50%, -50%);
-            width: 15vw;
-            height: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-container img {
+            width: 5vw;
+            height: 5vw;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .chatbot-container button {
+            font-size: 3vw;
+            font-variant: small-caps;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
+        }
+
+        .chatbot-container button:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: black;
         }
 
         /* Media Query for Larger Screens (Desktop View) */
@@ -107,8 +129,13 @@
                 padding: 10px 20px;
             }
 
-            .chatbot-image {
-                width: 10vw;
+            .chatbot-container img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .chatbot-container button {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -122,13 +149,16 @@
     </div>
     <div class="heading">mysticxai</div>
     <button class="audio-toggle" id="audioButton" onclick="toggleAudio()">Play Audio</button>
-    <img class="chatbot-image" id="chatbotImage" src="https://te.legra.ph/file/bdaa94405eb9d7afd22f3-ff13d310e572670dba.jpg" alt="Chatbot" onclick="openChatbot()">
+    <div class="chatbot-container">
+        <img src="https://te.legra.ph/file/2d7556d5133e178d83f2e-3c7f7c23e49acb1514.jpg" alt="Chatbot Icon">
+        <button id="chatbotButton" onclick="openChatbot()">Chatbot</button>
+    </div>
     <button class="back-toggle" id="backButton" onclick="goBack()">Back</button>
 
     <script>
         const video = document.getElementById('backgroundVideo');
         const audioButton = document.getElementById('audioButton');
-        const chatbotImage = document.getElementById('chatbotImage');
+        const chatbotButton = document.getElementById('chatbotButton');
         const backButton = document.getElementById('backButton');
 
         function toggleAudio() {
