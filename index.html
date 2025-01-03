@@ -36,7 +36,7 @@
             top: 5%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 5vw; /* Responsive font size */
+            font-size: 5vw;
             font-variant: small-caps;
             text-transform: uppercase;
             color: white;
@@ -54,24 +54,42 @@
             100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff; }
         }
 
-        .audio-toggle {
+        .audio-toggle,
+        .chatbot-toggle,
+        .back-toggle {
             position: absolute;
-            bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
-            padding: 6px 12px; /* Smaller padding for mobile */
+            padding: 6px 12px;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 3vw; /* Smaller font size for mobile */
+            font-size: 3vw;
             text-align: center;
         }
 
-        .audio-toggle:hover {
+        .audio-toggle:hover,
+        .chatbot-toggle:hover,
+        .back-toggle:hover {
             background-color: rgba(255, 255, 255, 0.7);
             color: black;
+        }
+
+        .audio-toggle {
+            bottom: 5%;
+        }
+
+        .chatbot-toggle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .back-toggle {
+            bottom: 5%;
+            font-variant: small-caps;
+            display: none; /* Initially hidden */
         }
 
         /* Media Query for Larger Screens (Desktop View) */
@@ -80,9 +98,11 @@
                 font-size: 3rem;
             }
 
-            .audio-toggle {
-                font-size: 1.2rem; /* Fixed font size for desktop */
-                padding: 10px 20px; /* Larger padding for desktop */
+            .audio-toggle,
+            .chatbot-toggle,
+            .back-toggle {
+                font-size: 1.2rem;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -95,20 +115,42 @@
         </video>
     </div>
     <div class="heading">mysticxai</div>
-    <button class="audio-toggle" onclick="toggleAudio()">Play Audio</button>
+    <button class="audio-toggle" id="audioButton" onclick="toggleAudio()">Play Audio</button>
+    <button class="chatbot-toggle" id="chatbotButton" onclick="openChatbot()">Chatbot</button>
+    <button class="back-toggle" id="backButton" onclick="goBack()">Back</button>
 
     <script>
         const video = document.getElementById('backgroundVideo');
-        const button = document.querySelector('.audio-toggle');
+        const audioButton = document.getElementById('audioButton');
+        const chatbotButton = document.getElementById('chatbotButton');
+        const backButton = document.getElementById('backButton');
 
         function toggleAudio() {
             if (video.muted) {
                 video.muted = false;
-                button.textContent = 'Mute Audio';
+                audioButton.textContent = 'Mute Audio';
             } else {
                 video.muted = true;
-                button.textContent = 'Play Audio';
+                audioButton.textContent = 'Play Audio';
             }
+        }
+
+        function openChatbot() {
+            // Hide the audio button and show the back button
+            audioButton.style.display = 'none';
+            backButton.style.display = 'block';
+
+            // Simulate opening a chatbot (this can be replaced with your chatbot logic)
+            alert('Chatbot opened!');
+        }
+
+        function goBack() {
+            // Hide the back button and show the audio button
+            backButton.style.display = 'none';
+            audioButton.style.display = 'block';
+
+            // Simulate closing the chatbot
+            alert('Returning to the main screen.');
         }
     </script>
 </body>
