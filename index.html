@@ -54,22 +54,11 @@
             100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff; }
         }
 
-        .audio-toggle-container {
+        .audio-toggle {
             position: absolute;
             bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .audio-toggle-container img {
-            width: 50px; /* Matches the size of the button */
-            height: 50px;
-        }
-
-        .audio-toggle {
             padding: 6px 12px;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
@@ -95,11 +84,6 @@
                 font-size: 1.2rem;
                 padding: 10px 20px;
             }
-
-            .audio-toggle-container img {
-                width: 60px;
-                height: 60px;
-            }
         }
     </style>
 </head>
@@ -111,25 +95,19 @@
         </video>
     </div>
     <div class="heading">mysticxai</div>
-    <div class="audio-toggle-container">
-        <img id="playImage" src="play-button.jpg" alt="Play Button">
-        <button class="audio-toggle" id="audioButton" onclick="toggleAudio()">Play Audio</button>
-    </div>
+    <button class="audio-toggle" id="audioButton" onclick="toggleAudio()">Play Audio</button>
 
     <script>
         const video = document.getElementById('backgroundVideo');
         const audioButton = document.getElementById('audioButton');
-        const playImage = document.getElementById('playImage');
 
         function toggleAudio() {
             if (video.muted) {
                 video.muted = false;
                 audioButton.textContent = 'Mute Audio';
-                playImage.src = 'playing.gif'; // Change to GIF when playing
             } else {
                 video.muted = true;
                 audioButton.textContent = 'Play Audio';
-                playImage.src = 'play-button.jpg'; // Change back to image when muted
             }
         }
     </script>
