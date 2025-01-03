@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background</title>
+    <title>Video Background with Audio Toggle</title>
     <style>
         * {
             margin: 0;
@@ -30,14 +30,49 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .audio-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .audio-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: black;
+        }
     </style>
 </head>
 <body>
     <div class="video-background">
-        <video autoplay loop muted playsinline>
+        <video id="backgroundVideo" autoplay loop muted playsinline>
             <source src="https://envs.sh/rWD.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+    <button class="audio-toggle" onclick="toggleAudio()">Play Audio</button>
+
+    <script>
+        const video = document.getElementById('backgroundVideo');
+        const button = document.querySelector('.audio-toggle');
+
+        function toggleAudio() {
+            if (video.muted) {
+                video.muted = false;
+                button.textContent = 'Mute Audio';
+            } else {
+                video.muted = true;
+                button.textContent = 'Play Audio';
+            }
+        }
+    </script>
 </body>
 </html>
