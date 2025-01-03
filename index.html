@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background with Audio Toggle</title>
+    <title>Video Background with Neon Heading</title>
     <style>
         * {
             margin: 0;
@@ -36,11 +36,21 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2rem;
+            font-size: 3rem;
             font-variant: small-caps;
+            text-transform: uppercase;
             color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff;
+            animation: neonGlow 2s infinite alternate;
             z-index: 1;
+        }
+
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff; }
+            25% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff, 0 0 75px #00ffff; }
+            50% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 75px #00ff00; }
+            75% { text-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900, 0 0 30px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900; }
+            100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff; }
         }
 
         .audio-toggle {
@@ -70,7 +80,7 @@
             Your browser does not support the video tag.
         </video>
     </div>
-    <div class="heading">mysticXAI</div>
+    <div class="heading">mysticxai</div>
     <button class="audio-toggle" onclick="toggleAudio()">Play Audio</button>
 
     <script>
